@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colonel Blotto Game</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        #game-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            padding: 8px;
+            margin: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #results {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div id="game-container">
+    <h2>Colonel Blotto Game</h2>
+    <label>Total Soldiers: <input type="number" id="total-soldiers"></label><br>
+    <label>Total Towers: <input type="number" id="total-towers"></label><br>
+    <label>Total Players: <input type="number" id="total-players"></label><br>
+    <button onclick="playGame()">Play Game</button>
+    <div id="results"></div>
+</div>
+
+<script>
+    function allocateSoldiers(totalSoldiers, totalTowers, player) {
+        let allocations = [];
+        let remainingSoldiers = totalSoldiers;
+
+        for (let i = 0; i < totalTowers - 1; i++) {
+            let maxAllocation = Math.min(remainingSoldiers, totalSoldiers - (totalTowers - i - 1));
+            let allocation = prompt(`Player ${player}, enter the number of soldiers for Tower ${i + 1} (1-${maxAllocation}): `);
+
+            while (allocation < 1 || allocation > maxAllocation || isNaN(allocation)) {
+                allocation = prompt(`Invalid input. Please enter a number between 1 and ${maxAllocation}.`);
+            }
+
+            allocations.push(parseInt(allocation));
+            remainingSoldiers -= parseInt(allocation);
+        }
+
+        allocations.push(remainingSoldiers);
+        return allocations;
+    }
+
+    function playGame() {
+        let totalSoldiers = parseInt(document.getElementById('total-soldiers').value);
+        let totalTowers = parseInt(document.getElementById('total-towers').value);
+        let totalPlayers = parseInt(document.getElementById('total-players').value);
+
+        let playerAllocationsList = [];
+
+        for (let player = 1; player <= totalPlayers; player++) {
+            alert(`Player ${player}'s turn:`);
+            let playerAllocations = allocateSoldiers(totalSoldiers, totalTowers, player);
+            playerAllocationsList.push(playerAllocations);
+        }
+
+        let playerCombinations = [];
+        for (let i = 0; i < totalPlayers - 1; i++) {
+            for (let j = i + 1; j < totalPlayers; j++) {
+                playerCombinations.push([i, j]);
+            }
+        }
+
+        let playerWins = Array(totalPlayers).fill(0);
+
+        for (let combination of playerCombinations) {
+            let [player1, player2] = combination;
+            let player1Allocations = playerAllocationsList[player1];
+            let player2Allocations = playerAllocationsList[player2];
+
+            let comparisonResult = player1Allocations.reduce((sum, p1, index) => sum + (p1 > player2Allocations[index] ? 1 : 0), 0);
+
+            if (comparisonResult > totalTowers / 2) {
+                playerWins[player1]++;
+            } else {
+                playerWins[player2]++;
+            }
+        }
+
+        let resultsDiv = document.getElementById('results');
+        resultsDiv.innerHTML = "<h3>Round Results:</h3>";
+        for (let player = 0; player < totalPlayers; player++) {
+            resultsDiv.innerHTML += `<p>Player ${player + 1} wins ${playerWins[player]} pairwise comparisons.</p>`;
+        }
+
+        let roundWinner = playerWins.indexOf(Math.max(...playerWins)) + 1;
+        resultsDiv.innerHTML += `<h2>Player ${roundWinner} is the winner of the round!</h2>`;
+    }
+</script>
+
+</body>
+</html>

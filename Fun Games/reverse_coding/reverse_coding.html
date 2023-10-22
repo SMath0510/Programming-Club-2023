@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse Coding Platform</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #282c34;
+            color: #61dafb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #container {
+            text-align: center;
+        }
+
+        #number-input {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        #generate-btn {
+            padding: 10px 20px;
+            background-color: #61dafb;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <h1>Reverse Coding Platform</h1>
+    <label for="number-input">Enter a number:</label>
+    <input type="number" id="number-input">
+    <button id="generate-btn">Generate Output</button>
+    <div id="output"></div>
+</div>
+
+<script>
+    function isPrime(num) {
+        for (let i = 2; i < num; i++)
+            if (num % i === 0) return false;
+        return num !== 1;
+    }
+
+    function generateOutput() {
+        // Get user input
+        var userInput = parseInt(document.getElementById('number-input').value);
+
+        // Check if the input is a valid number
+        if (!isNaN(userInput) && userInput > 0) {
+            // Calculate the x-th prime number
+            var count = 0;
+            var candidate = 1;
+
+            while (count < userInput) {
+                candidate++;
+                if (isPrime(candidate)) {
+                    count++;
+                }
+            }
+
+            // Display the output
+            document.getElementById('output').innerHTML = 'Output: ' + candidate;
+        } else {
+            // Display an error message for invalid input
+            document.getElementById('output').innerHTML = 'Please enter a valid positive number.';
+        }
+    }
+
+    document.getElementById('generate-btn').addEventListener('click', generateOutput);
+</script>
+
+
+
+</body>
+</html>

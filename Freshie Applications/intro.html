@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+
+        h2 {
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+
+        p {
+            color: #555;
+        }
+
+        code {
+            background-color: #ecf0f1;
+            padding: 2px 5px;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        pre {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        blockquote {
+            border-left: 4px solid #bdc3c7;
+            margin: 10px 0;
+            padding-left: 10px;
+            color: #777;
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background-color: #2c3e50;
+            margin: 20px 0;
+        }
+
+        h1, h2, h3, p, li {
+            transition: color 0.3s;
+        }
+
+        h1:hover, h2:hover, h3:hover, p:hover, li:hover {
+            color: #e74c3c;
+        }
+    </style>
+    <title>Competitive Programming</title>
+</head>
+
+<body>
+
+    <h1>Competitive Programming in Short</h1>
+
+    <p><strong>Competitive Programming</strong> is a sport where participants solve well-defined algorithmic and computational problems within a specified time limit. The goal is to write efficient code that produces correct results for given inputs. It's a mentally engaging activity that sharpens problem-solving skills and algorithmic thinking.</p>
+
+    <hr>
+
+    <h2>Problem Statement 1: VectorLand</h2>
+
+    <p>Welcome to VectorLand, where all operations and computations are done using a data structure called vectors, which is essentially just an array. Imagine you own a big shop called "VectorMart." One day, VectorMan comes to your shop and asks a simple question: "How many 'distinct' items are there in your shop?" The challenge is to determine the count of distinct items based on the given format.</p>
+
+    <p><strong>Example:</strong> If you have 5 items A, A, A, B, B, your vector would be [A, A, A, B, B]. Here, there are 2 distinct items but 5 entries.</p>
+
+    <h3>Approach:</h3>
+
+    <hr>
+
+    <h2>Additional Exercise</h2>
+
+    <p>Now, let's imagine we're on vacation in SetLand. Here, all computations and operations are done using sets. Consider the shopkeeper problem:</p>
+
+    <blockquote><strong>How does the problem become simpler/tougher on using sets instead of vectors for the shopkeeper problem?</strong></blockquote>
+
+    <p><strong>Explanation:</strong> Using sets simplifies the shopkeeper problem as sets inherently store only unique elements. So, in SetLand, the shopkeeper can easily determine the count of distinct items by using a set to store the entries. This eliminates the need for manual counting and makes the solution more straightforward.</p>
+
+    <hr>
+
+    <h1>Problem Statement 2: The Range Checker</h1>
+
+    <h2>Context</h2>
+
+    <p>Welcome to the world of ZooLas, magical creatures that can create their own pearls. ZooLas aren't great at remembering details but excel at simple math. Your task is to oversee the security of a set of lockers, each containing pearls, assigned with unique numbers.</p>
+
+    <h2>Problem Description</h2>
+
+    <p>As the chief in charge of locker security, you receive questions from Mr. PooLa, the owner. These questions involve specifying a range of lockers by providing the starting and ending indices. Your goal is to compute the sum of pearls in the specified locker range [begin, end]. However, there's a twist—every time you open a locker, you spend one penny.</p>
+
+    <p>Here's the catch: ZooLas, the creatures at your disposal, do not remember any information. For instance, if asked about the pearls in range [0, 1] in a vector [1, 2, 3, 4], ZooLa starts adding from 0 to 1. If another question is asked, say the sum of pearls from 0 to 3, ZooLa will restart the calculations from scratch. Consequently, you end up spending pennies for each operation.</p>
+
+    <h3>Flaws in the Problem Statement</h3>
+    <ol>
+        <li>The cost of one penny per locker opening might lead to inefficient solutions, as repeated calculations can result in excessive spending.</li>
+        <li>Lack of memory in ZooLas might lead to redundant calculations and increased costs.</li>
+    </ol>
+
+    <h2>Additional Question</h2>
+
+    <p>Impressed by your correct answers, the creator of ZooLand grants ZooLas the ability to maintain a vector called "Prefix-Sum." Explore this concept and suggest how incorporating such a data structure/algorithm can enhance the performance of your code.</p>
+
+    <hr>
+
+    <h3>Additional Information:</h3>
+    <ul>
+        <li>ZooLa spends one penny each time it calculates the sum for a given range.</li>
+        <li>ZooLas do not remember previous calculations, leading to potential inefficiencies.</li>
+        <li>Consider how the concept of "Prefix-Sum" can address the challenges posed in the initial problem.</li>
+    </ul>
+
+</body>
+
+</html>
